@@ -6,10 +6,20 @@ import bcrypt from 'bcryptjs'
 let db: any = null
 
 export async function getDB() {
-  // Vercelのビルド時はモックを返す
-  if (process.env.VERCEL) {
+  // 本番環境（Vercel）でSupabaseが設定されている場合
+  if (process.env.VERCEL && process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY) {
     const { getDB: getProdDB } = await import('./database-prod')
     return getProdDB()
+  }
+  
+  // Vercelビルド時のみモックを返す
+  if (process.env.VERCEL && !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    return {
+      get: async () => null,
+      all: async () => [],
+      run: async () => ({ lastID: 1, changes: 1 }),
+      exec: async () => null
+    }
   }
   if (!db) {
     db = await open({
@@ -62,10 +72,15 @@ export async function getDB() {
 }
 
 export async function validateUser(username: string, password: string) {
-  // Vercelのビルド時はモックを返す
-  if (process.env.VERCEL) {
+  // 本番環境（Vercel）でSupabaseが設定されている場合
+  if (process.env.VERCEL && process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY) {
     const { validateUser: validateProdUser } = await import('./database-prod')
     return validateProdUser(username, password)
+  }
+  
+  // Vercelビルド時のみfalseを返す
+  if (process.env.VERCEL && !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    return false
   }
   
   const db = await getDB()
