@@ -16,15 +16,16 @@ export default function BubbleMatrix() {
           position: absolute;
           border-radius: 50%;
           background: radial-gradient(circle at 30% 30%, 
-              rgba(255, 255, 255, 0.9) 0%, 
-              rgba(250, 255, 250, 0.6) 30%, 
-              rgba(245, 255, 245, 0.3) 60%, 
-              transparent 100%);
+              rgba(139, 159, 134, 0.8) 0%, 
+              rgba(139, 159, 134, 0.5) 30%, 
+              rgba(77, 103, 65, 0.3) 60%, 
+              rgba(45, 74, 43, 0.1) 100%);
           box-shadow: 
-              inset -10px -10px 20px rgba(0, 0, 0, 0.05),
-              inset 5px 5px 10px rgba(255, 255, 255, 0.8),
-              0 10px 30px rgba(0, 0, 0, 0.1);
+              inset -15px -15px 30px rgba(45, 74, 43, 0.2),
+              inset 10px 10px 20px rgba(255, 255, 255, 0.4),
+              0 20px 40px rgba(45, 74, 43, 0.3);
           transform-style: preserve-3d;
+          border: 1px solid rgba(139, 159, 134, 0.3);
         }
 
         .bubble-3d::before {
@@ -36,9 +37,24 @@ export default function BubbleMatrix() {
           left: 10%;
           border-radius: 50%;
           background: radial-gradient(circle at 50% 50%, 
-              rgba(255, 255, 255, 0.8) 0%, 
+              rgba(255, 255, 255, 0.9) 0%, 
+              rgba(255, 255, 255, 0.5) 30%,
               transparent 70%);
-          filter: blur(2px);
+          filter: blur(3px);
+        }
+
+        .bubble-3d::after {
+          content: '';
+          position: absolute;
+          width: 30%;
+          height: 30%;
+          bottom: 15%;
+          right: 15%;
+          border-radius: 50%;
+          background: radial-gradient(circle at 50% 50%, 
+              rgba(45, 74, 43, 0.5) 0%, 
+              transparent 60%);
+          filter: blur(5px);
         }
 
         .bubble-1 {
@@ -106,19 +122,19 @@ export default function BubbleMatrix() {
         @keyframes bubble3D1 {
           0%, 100% {
               transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg) scale(1);
-              opacity: 0.7;
+              opacity: 0.9;
           }
           25% {
               transform: translate3d(100px, -80px, 100px) rotateX(180deg) rotateY(90deg) scale(1.2);
-              opacity: 0.5;
+              opacity: 0.7;
           }
           50% {
               transform: translate3d(-50px, 50px, -50px) rotateX(360deg) rotateY(180deg) scale(0.9);
-              opacity: 0.8;
+              opacity: 1;
           }
           75% {
               transform: translate3d(50px, -30px, 80px) rotateX(180deg) rotateY(270deg) scale(1.1);
-              opacity: 0.6;
+              opacity: 0.8;
           }
         }
 

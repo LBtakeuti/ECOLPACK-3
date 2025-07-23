@@ -16,7 +16,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: "palt" 1;
-    background-color: #F9FFF8;
+    min-height: 100vh;
   }
   
   /* 見出しのフォントウェイト調整 */

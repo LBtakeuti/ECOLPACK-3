@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className="font-serif bg-[#F9FFF8]">
+      <body className="font-serif bg-gradient-to-br from-[#F5F9F4] via-[#F9FFF8] to-[#F0F5EF]">
         <SplashScreen />
         <BubbleMatrix />
         <LoadingProvider>
