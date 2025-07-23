@@ -8,8 +8,15 @@ export const isSupabaseConfigured = () => {
   return supabaseUrl && supabaseAnonKey
 }
 
-// Supabaseクライアントの作成
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+// Supabaseクライアントの作成（遅延初期化）
+let supabaseClient: ReturnType<typeof createClient> | null = null
+
+export const getSupabase = () => {
+  if (!supabaseClient && isSupabaseConfigured()) {
+    supabaseClient = createClient(supabaseUrl, supabaseAnonKey)
+  }
+  return supabaseClient
+}
 
 // 画像アップロード用の関数
 export async function uploadImageToSupabase(file: File, folder: string = 'uploads') {
@@ -19,6 +26,11 @@ export async function uploadImageToSupabase(file: File, folder: string = 'upload
 
   const fileExt = file.name.split('.').pop()
   const fileName = `${folder}/${Date.now()}.${fileExt}`
+
+  const supabase = getSupabase()
+  if (!supabase) {
+    throw new Error('Supabase client is not initialized')
+  }
 
   const { data, error } = await supabase.storage
     .from('images')
@@ -50,6 +62,11 @@ export async function deleteImageFromSupabase(filePath: string) {
   }
   
   const fileName = pathParts[1]
+
+  const supabase = getSupabase()
+  if (!supabase) {
+    throw new Error('Supabase client is not initialized')
+  }
 
   const { error } = await supabase.storage
     .from('images')
