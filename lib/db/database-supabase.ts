@@ -1,15 +1,24 @@
 import { createClient } from '@supabase/supabase-js'
 import bcrypt from 'bcryptjs'
 
-// Supabase設定
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || ''
+// Supabaseクライアントを遅延初期化
+let supabase: ReturnType<typeof createClient> | null = null
 
-// サービスロールキーを使用（サーバーサイドのみ）
-const supabase = supabaseServiceKey ? createClient(supabaseUrl, supabaseServiceKey) : null
+function getSupabaseClient() {
+  if (!supabase) {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+    
+    if (supabaseUrl && supabaseServiceKey) {
+      supabase = createClient(supabaseUrl, supabaseServiceKey)
+    }
+  }
+  return supabase
+}
 
 export async function getDB() {
-  if (!supabase) {
+  const client = getSupabaseClient()
+  if (!client) {
     throw new Error('Supabase is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY')
   }
   
@@ -17,7 +26,7 @@ export async function getDB() {
   return {
     async get(query: string, ...params: any[]) {
       const tableName = extractTableName(query)
-      const { data, error } = await supabase
+      const { data, error } = await client
         .from(tableName)
         .select('*')
         .single()
@@ -28,7 +37,7 @@ export async function getDB() {
     
     async all(query: string, ...params: any[]) {
       const tableName = extractTableName(query)
-      const { data, error } = await supabase
+      const { data, error } = await client
         .from(tableName)
         .select('*')
       
@@ -57,10 +66,11 @@ export async function getDB() {
 }
 
 export async function validateUser(username: string, password: string) {
-  if (!supabase) return false
+  const client = getSupabaseClient()
+  if (!client) return false
   
   try {
-    const { data: user, error } = await supabase
+    const { data: user, error } = await client
       .from('users')
       .select('*')
       .eq('username', username)
@@ -68,6 +78,12 @@ export async function validateUser(username: string, password: string) {
     
     if (error || !user) {
       console.error('User lookup error:', error)
+      return false
+    }
+    
+    // 型安全性のチェック
+    if (!user.password_hash || typeof user.password_hash !== 'string') {
+      console.error('Invalid password hash in database')
       return false
     }
     
@@ -86,7 +102,8 @@ function extractTableName(query: string): string {
 }
 
 async function handleInsert(query: string, params: any[]) {
-  if (!supabase) throw new Error('Supabase client not initialized')
+  const client = getSupabaseClient()
+  if (!client) throw new Error('Supabase client not initialized')
   
   const tableName = query.match(/INSERT INTO\s+(\w+)/i)?.[1] || ''
   const columns = query.match(/\((.*?)\)/)?.[1].split(',').map(c => c.trim()) || []
@@ -96,7 +113,7 @@ async function handleInsert(query: string, params: any[]) {
     data[col] = params[i]
   })
   
-  const { data: result, error } = await supabase
+  const { data: result, error } = await client
     .from(tableName)
     .insert(data)
     .select()
@@ -106,11 +123,12 @@ async function handleInsert(query: string, params: any[]) {
 }
 
 async function handleUpdate(query: string, params: any[]) {
-  if (!supabase) throw new Error('Supabase client not initialized')
+  const client = getSupabaseClient()
+  if (!client) throw new Error('Supabase client not initialized')
   
   const tableName = query.match(/UPDATE\s+(\w+)/i)?.[1] || ''
   // 簡易的な実装 - 実際の使用ケースに応じて拡張が必要
-  const { error } = await supabase
+  const { error } = await client
     .from(tableName)
     .update({})
     .eq('id', params[params.length - 1])
@@ -120,11 +138,12 @@ async function handleUpdate(query: string, params: any[]) {
 }
 
 async function handleDelete(query: string, params: any[]) {
-  if (!supabase) throw new Error('Supabase client not initialized')
+  const client = getSupabaseClient()
+  if (!client) throw new Error('Supabase client not initialized')
   
   const tableName = query.match(/DELETE FROM\s+(\w+)/i)?.[1] || ''
   // 簡易的な実装 - 実際の使用ケースに応じて拡張が必要
-  const { error } = await supabase
+  const { error } = await client
     .from(tableName)
     .delete()
     .eq('id', params[0])
