@@ -11,7 +11,16 @@
   
   body {
     @apply bg-white text-eco-dark antialiased;
-    font-family: 'Noto Serif JP', serif;
+    font-family: "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Yu Mincho", YuMincho, "BIZ UDMincho", "Noto Serif JP", serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "palt" 1;
+  }
+  
+  /* 見出しのフォントウェイト調整 */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
   }
 
   ::selection {

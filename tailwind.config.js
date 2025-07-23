@@ -29,8 +29,24 @@ module.exports = {
         },
       },
       fontFamily: {
-        'serif': ['Noto Serif JP', 'serif'],
-        'sans': ['Noto Sans JP', 'sans-serif'],
+        'serif': [
+          '"Hiragino Mincho ProN"',
+          '"Hiragino Mincho Pro"',
+          '"Yu Mincho"',
+          'YuMincho',
+          '"BIZ UDMincho"',
+          '"Noto Serif JP"',
+          'serif'
+        ],
+        'sans': [
+          '"Hiragino Kaku Gothic ProN"',
+          '"Hiragino Sans"',
+          '"Yu Gothic"',
+          'YuGothic',
+          '"BIZ UDGothic"',
+          '"Noto Sans JP"',
+          'sans-serif'
+        ],
       },
       animation: {
         'fade-in': 'fadeIn 1.2s ease-out',

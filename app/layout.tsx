@@ -1,15 +1,8 @@
 import type { Metadata } from 'next'
-import { Noto_Serif_JP } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { LoadingProvider } from '@/providers/LoadingProvider'
-
-const notoSerifJP = Noto_Serif_JP({ 
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   title: '株式会社エコロパック - 環境に優しいパッケージソリューション',
@@ -23,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={notoSerifJP.className}>
+      <body className="font-serif">
         <LoadingProvider>
           <div className="min-h-screen flex flex-col">
             <Header />
