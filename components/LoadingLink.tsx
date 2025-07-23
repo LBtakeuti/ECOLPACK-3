@@ -15,7 +15,7 @@ export default function LoadingLink({
   href, 
   children, 
   className,
-  showLoader = true 
+  showLoader = false // デフォルトでローディングを表示しない
 }: LoadingLinkProps) {
   const { startLoading } = useLoading()
 
