@@ -77,6 +77,8 @@ function extractTableName(query: string): string {
 }
 
 async function handleInsert(query: string, params: any[]) {
+  if (!supabase) throw new Error('Supabase client not initialized')
+  
   const tableName = query.match(/INSERT INTO\s+(\w+)/i)?.[1] || ''
   const columns = query.match(/\((.*?)\)/)?.[1].split(',').map(c => c.trim()) || []
   
@@ -95,6 +97,8 @@ async function handleInsert(query: string, params: any[]) {
 }
 
 async function handleUpdate(query: string, params: any[]) {
+  if (!supabase) throw new Error('Supabase client not initialized')
+  
   const tableName = query.match(/UPDATE\s+(\w+)/i)?.[1] || ''
   // 簡易的な実装 - 実際の使用ケースに応じて拡張が必要
   const { error } = await supabase
@@ -107,6 +111,8 @@ async function handleUpdate(query: string, params: any[]) {
 }
 
 async function handleDelete(query: string, params: any[]) {
+  if (!supabase) throw new Error('Supabase client not initialized')
+  
   const tableName = query.match(/DELETE FROM\s+(\w+)/i)?.[1] || ''
   // 簡易的な実装 - 実際の使用ケースに応じて拡張が必要
   const { error } = await supabase
