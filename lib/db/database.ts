@@ -6,6 +6,11 @@ import bcrypt from 'bcryptjs'
 let db: any = null
 
 export async function getDB() {
+  // Vercelのビルド時はモックを返す
+  if (process.env.VERCEL) {
+    const { getDB: getProdDB } = await import('./database-prod')
+    return getProdDB()
+  }
   if (!db) {
     db = await open({
       filename: path.join(process.cwd(), 'cms.db'),
@@ -57,6 +62,12 @@ export async function getDB() {
 }
 
 export async function validateUser(username: string, password: string) {
+  // Vercelのビルド時はモックを返す
+  if (process.env.VERCEL) {
+    const { validateUser: validateProdUser } = await import('./database-prod')
+    return validateProdUser(username, password)
+  }
+  
   const db = await getDB()
   const user = await db.get('SELECT * FROM users WHERE username = ?', username)
   
