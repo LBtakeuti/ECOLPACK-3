@@ -3,11 +3,12 @@ import { getDB } from '@/lib/db/database'
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const db = await getDB()
-    const newsItem = await db.get('SELECT * FROM news WHERE id = ?', params.id)
+    const newsItem = await db.get('SELECT * FROM news WHERE id = ?', id)
     
     if (!newsItem) {
       return NextResponse.json(
@@ -28,9 +29,10 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const { title, content, status, published_at } = await request.json()
     
     const db = await getDB()
@@ -42,10 +44,10 @@ export async function PUT(
       content,
       status,
       published_at,
-      params.id
+      id
     )
     
-    const updatedItem = await db.get('SELECT * FROM news WHERE id = ?', params.id)
+    const updatedItem = await db.get('SELECT * FROM news WHERE id = ?', id)
     
     return NextResponse.json(updatedItem)
   } catch (error) {
@@ -59,11 +61,12 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const db = await getDB()
-    await db.run('DELETE FROM news WHERE id = ?', params.id)
+    await db.run('DELETE FROM news WHERE id = ?', id)
     
     return NextResponse.json({ success: true })
   } catch (error) {
