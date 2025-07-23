@@ -4,6 +4,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { LoadingProvider } from '@/providers/LoadingProvider'
 import SplashScreen from '@/components/SplashScreen'
+import BubbleMatrix from '@/components/BubbleMatrix'
 
 export const metadata: Metadata = {
   title: '株式会社エコロパック - 環境に優しいパッケージソリューション',
@@ -17,10 +18,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className="font-serif">
+      <body className="font-serif bg-[#F9FFF8]">
         <SplashScreen />
+        <BubbleMatrix />
         <LoadingProvider>
-          <div className="min-h-screen flex flex-col">
+          <div className="min-h-screen flex flex-col relative z-10">
             <Header />
             <main className="flex-grow pt-20">
               {children}

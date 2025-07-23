@@ -26,7 +26,7 @@ export default function Header() {
 
   return (
     <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-      isScrolled ? 'glass-effect' : 'bg-transparent'
+      isScrolled ? 'bg-white/90 backdrop-blur-sm border-b border-eco-gray-100' : 'bg-transparent'
     }`}>
       <div className="container-eco">
         <div className="flex items-center justify-between h-24">

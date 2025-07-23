@@ -10,12 +10,13 @@
   }
   
   body {
-    @apply bg-white text-eco-dark antialiased;
+    @apply text-eco-dark antialiased;
     font-family: "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Yu Mincho", YuMincho, "BIZ UDMincho", "Noto Serif JP", serif;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: "palt" 1;
+    background-color: #F9FFF8;
   }
   
   /* 見出しのフォントウェイト調整 */
