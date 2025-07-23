@@ -37,6 +37,9 @@ module.exports = {
         'slide-down': 'slideDown 1s ease-out',
         'scale': 'scale 0.5s ease-out',
         'subtle-float': 'subtleFloat 8s ease-in-out infinite',
+        'pulse-custom': 'pulseCustom 2s ease-in-out infinite',
+        'fill-progress': 'fillProgress 3s ease-in-out infinite',
+        'fade-text': 'fadeText 2s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -59,6 +62,28 @@ module.exports = {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
         },
+        pulseCustom: {
+          '0%, 100%': { 
+            transform: 'translate(-50%, -50%) scale(1)',
+            boxShadow: '0 0 20px rgba(255, 193, 7, 0.5)'
+          },
+          '50%': { 
+            transform: 'translate(-50%, -50%) scale(1.1)',
+            boxShadow: '0 0 40px rgba(255, 193, 7, 0.8)'
+          },
+        },
+        fillProgress: {
+          '0%': { width: '0%', transform: 'translateX(-100%)' },
+          '50%': { width: '100%', transform: 'translateX(0%)' },
+          '100%': { width: '100%', transform: 'translateX(100%)' },
+        },
+        fadeText: {
+          '0%, 100%': { opacity: '0.6' },
+          '50%': { opacity: '1' },
+        },
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(circle, var(--tw-gradient-stops))',
       },
     },
   },
