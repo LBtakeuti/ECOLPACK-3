@@ -1,106 +1,95 @@
-# Supabase画像ストレージ設定ガイド
+# Supabase セットアップガイド
 
-Supabaseを使用して画像をクラウドストレージに保存する設定方法です。
+## 1. Supabaseプロジェクトの作成
 
-## Supabaseプロジェクトの作成
+1. [Supabase](https://supabase.com) にアクセス
+2. 新規プロジェクトを作成
+3. プロジェクトURLとAnon Keyを取得
 
-1. **Supabaseアカウントの作成**
-   - [Supabase](https://supabase.com)にアクセス
-   - GitHubアカウントでサインアップ
+## 2. データベーステーブルの作成
 
-2. **新しいプロジェクトを作成**
-   - 「New Project」をクリック
-   - プロジェクト名: `ecolopack-storage`（任意）
-   - データベースパスワードを設定（安全な場所に保存）
-   - リージョン: `Northeast Asia (Tokyo)`を選択
+Supabase SQLエディタで以下を実行：
 
-3. **プロジェクトの初期化を待つ**
-   - 約2分程度でプロジェクトが作成されます
+```sql
+-- ユーザーテーブル
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username TEXT UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL
+);
 
-## ストレージバケットの設定
+-- ニューステーブル
+CREATE TABLE news (
+  id SERIAL PRIMARY KEY,
+  title TEXT NOT NULL,
+  content TEXT NOT NULL,
+  status TEXT DEFAULT 'draft',
+  published_at TIMESTAMP,
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW()
+);
 
-1. **Storageタブに移動**
-   - 左側メニューから「Storage」を選択
+-- ページ画像テーブル
+CREATE TABLE page_images (
+  id SERIAL PRIMARY KEY,
+  page_name TEXT NOT NULL,
+  image_name TEXT NOT NULL,
+  file_path TEXT NOT NULL,
+  alt_text TEXT,
+  created_at TIMESTAMP DEFAULT NOW(),
+  UNIQUE(page_name, image_name)
+);
 
-2. **新しいバケットを作成**
-   - 「New bucket」をクリック
-   - バケット名: `images`
-   - Public bucket: **ON**にする（画像を公開アクセス可能にする）
-   - 「Create bucket」をクリック
+-- 更新日時の自動更新
+CREATE OR REPLACE FUNCTION update_updated_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.updated_at = NOW();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
 
-3. **バケットポリシーの設定**
-   - 作成した`images`バケットをクリック
-   - 「Policies」タブを選択
-   - 「New Policy」をクリック
+CREATE TRIGGER update_news_updated_at BEFORE UPDATE ON news
+  FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+```
 
-4. **アップロードポリシーを追加**
-   ```sql
-   -- すべてのユーザーがアップロードできるようにする
-   CREATE POLICY "Allow public uploads" ON storage.objects
-   FOR INSERT WITH CHECK (bucket_id = 'images');
-   ```
+## 3. 初期管理者ユーザーの作成
 
-5. **読み取りポリシーを追加**
-   ```sql
-   -- すべてのユーザーが画像を閲覧できるようにする
-   CREATE POLICY "Allow public reads" ON storage.objects
-   FOR SELECT USING (bucket_id = 'images');
-   ```
+```sql
+-- パスワードハッシュは事前に生成する必要があります
+-- または、初回ログイン時に作成するロジックを実装
+INSERT INTO users (username, password_hash) 
+VALUES ('admin', '$2a$10$...');  -- bcryptハッシュ
+```
 
-## 環境変数の取得
+## 4. 環境変数の設定
 
-1. **プロジェクト設定に移動**
-   - 左側メニューの「Settings」→「API」を選択
+Vercelで以下の環境変数を追加：
 
-2. **必要な情報をコピー**
-   - **Project URL**: `https://xxxxx.supabase.co`
-   - **anon public**: `eyJhbGc...`（長い文字列）
+```
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+```
 
-## Vercelでの環境変数設定
+## 5. ストレージバケットの設定
 
-1. **Vercelプロジェクトの設定**
-   - プロジェクト設定→「Environment Variables」
+1. Supabaseダッシュボードで「Storage」を開く
+2. 「images」バケットを作成
+3. バケットをpublicに設定
 
-2. **以下の環境変数を追加**
-   ```
-   NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGc...（anon publicキー）
-   SESSION_SECRET=your-session-secret-here
-   ```
+## 6. RLS（Row Level Security）の設定
 
-## 動作確認
+```sql
+-- 必要に応じてRLSポリシーを設定
+-- 例：認証されたユーザーのみ書き込み可能
+ALTER TABLE news ENABLE ROW LEVEL SECURITY;
+ALTER TABLE page_images ENABLE ROW LEVEL SECURITY;
 
-1. **デプロイ後の確認**
-   - 管理画面（`/admin`）にログイン
-   - 画像管理ページで画像をアップロード
-   - アップロードされた画像がSupabaseに保存されることを確認
+-- ポリシーの例
+CREATE POLICY "Public read access" ON news
+  FOR SELECT USING (status = 'published');
 
-2. **Supabaseダッシュボードで確認**
-   - Storage→imagesバケットで画像が保存されているか確認
-
-## メリット
-
-- **無料枠**: 1GBまでのストレージが無料
-- **高速配信**: CDN経由で画像を配信
-- **自動バックアップ**: Supabaseが自動的にバックアップ
-- **スケーラブル**: トラフィックが増えても安定動作
-
-## トラブルシューティング
-
-### 画像がアップロードできない場合
-- 環境変数が正しく設定されているか確認
-- Supabaseのバケットポリシーが正しく設定されているか確認
-
-### 画像が表示されない場合
-- バケットがPublicに設定されているか確認
-- CORSの設定が必要な場合があります
-
-### エラーが発生する場合
-- Supabaseダッシュボードのログを確認
-- ブラウザのコンソールエラーを確認
-
-## 注意事項
-
-- 本番環境では適切なアクセス制御を検討してください
-- 大量の画像を扱う場合は有料プランへの移行を検討してください
-- 定期的にストレージ使用量を確認してください
+CREATE POLICY "Admin full access" ON news
+  FOR ALL USING (true);
+```

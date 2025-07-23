@@ -14,11 +14,14 @@ SESSION_SECRET=your-very-long-random-string-here-at-least-32-characters
 ### 2. NEXT_PUBLIC_BASE_URL（自動設定）
 - Vercelが自動的に設定します（設定不要）
 
-### 3. Supabase設定（画像アップロード用・オプション）
+### 3. Supabase設定（CMS機能とストレージ用・オプション）
 ```
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-key
 ```
+
+**注意**: SUPABASE_SERVICE_ROLE_KEYはサーバーサイドでのみ使用され、セキュアです。
 
 ## Vercelでの設定手順
 
