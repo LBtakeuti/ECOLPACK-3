@@ -22,10 +22,17 @@ export function useLoading() {
 
 export function LoadingProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(false)
+  const [isInitialized, setIsInitialized] = useState(false)
   const pathname = usePathname()
 
   useEffect(() => {
-    // ページ遷移時にローディングを開始
+    // 初期化フラグを設定
+    if (!isInitialized) {
+      setIsInitialized(true)
+      return
+    }
+
+    // ページ遷移時にローディングを開始（初回は除く）
     setIsLoading(true)
     
     // 短い遅延後にローディングを終了（実際のデータ読み込みに合わせて調整）
@@ -34,7 +41,7 @@ export function LoadingProvider({ children }: { children: React.ReactNode }) {
     }, 1500)
 
     return () => clearTimeout(timer)
-  }, [pathname])
+  }, [pathname, isInitialized])
 
   const startLoading = () => setIsLoading(true)
   const stopLoading = () => setIsLoading(false)
