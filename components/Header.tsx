@@ -25,11 +25,12 @@ export default function Header() {
   ]
 
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-      isScrolled || isMenuOpen ? 'bg-white/90 backdrop-blur-sm border-b border-eco-gray-100' : 'bg-transparent'
-    }`}>
-      <div className="container-eco">
-        <div className="flex items-center justify-between h-24">
+    <header className="fixed top-0 w-full z-50">
+      <div className={`transition-all duration-500 ${
+        isScrolled || isMenuOpen ? 'bg-white/90 backdrop-blur-sm border-b border-eco-gray-100' : 'bg-transparent'
+      }`}>
+        <div className="container-eco">
+          <div className="flex items-center justify-between h-24">
           <Link href="/" className="flex items-center space-x-3 group">
             <div className="w-10 h-10 bg-eco-primary flex items-center justify-center">
               <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -80,11 +81,13 @@ export default function Header() {
             </div>
           </button>
         </div>
-
-        {/* Mobile Menu */}
-        <div className={`md:hidden overflow-hidden transition-all duration-500 bg-white/100 ${
-          isMenuOpen ? 'max-h-96' : 'max-h-0'
-        }`}>
+      </div>
+      
+      {/* Mobile Menu - 独立した白背景 */}
+      <div className={`md:hidden overflow-hidden transition-all duration-500 bg-white ${
+        isMenuOpen ? 'max-h-96' : 'max-h-0'
+      }`}>
+        <div className="container-eco">
           <nav className="py-8 space-y-4 border-t border-eco-gray-100">
             {navItems.map((item) => (
               <Link
