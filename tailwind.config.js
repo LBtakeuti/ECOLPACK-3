@@ -57,6 +57,7 @@ module.exports = {
         'pulse-custom': 'pulseCustom 2s ease-in-out infinite',
         'fill-progress': 'fillProgress 3s ease-in-out infinite',
         'fade-text': 'fadeText 2s ease-in-out infinite',
+        'reload-progress': 'reloadProgress 0.5s ease-out forwards',
       },
       keyframes: {
         fadeIn: {
@@ -97,6 +98,10 @@ module.exports = {
         fadeText: {
           '0%, 100%': { opacity: '0.6' },
           '50%': { opacity: '1' },
+        },
+        reloadProgress: {
+          '0%': { width: '0%' },
+          '100%': { width: '100%' },
         },
       },
       backgroundImage: {
