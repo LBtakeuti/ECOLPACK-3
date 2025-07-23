@@ -9,8 +9,18 @@ function getSupabaseClient() {
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
     const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
     
+    console.log('Initializing Supabase client:', {
+      hasUrl: !!supabaseUrl,
+      urlStart: supabaseUrl?.substring(0, 20),
+      hasServiceKey: !!supabaseServiceKey,
+      keyStart: supabaseServiceKey?.substring(0, 10)
+    })
+    
     if (supabaseUrl && supabaseServiceKey) {
       supabase = createClient(supabaseUrl, supabaseServiceKey)
+      console.log('Supabase client created successfully')
+    } else {
+      console.error('Cannot create Supabase client - missing credentials')
     }
   }
   return supabase
@@ -66,28 +76,44 @@ export async function getDB() {
 }
 
 export async function validateUser(username: string, password: string) {
+  console.log('validateUser called for:', username)
+  
   const client = getSupabaseClient()
-  if (!client) return false
+  if (!client) {
+    console.error('Supabase client is null')
+    return false
+  }
   
   try {
+    console.log('Querying users table...')
     const { data: user, error } = await client
       .from('users')
       .select('*')
       .eq('username', username)
       .single()
     
-    if (error || !user) {
-      console.error('User lookup error:', error)
+    if (error) {
+      console.error('Supabase query error:', error.message, error.code)
       return false
     }
+    
+    if (!user) {
+      console.error('No user found with username:', username)
+      return false
+    }
+    
+    console.log('User found:', { id: user.id, username: user.username })
     
     // 型安全性のチェック
     if (!user.password_hash || typeof user.password_hash !== 'string') {
-      console.error('Invalid password hash in database')
+      console.error('Invalid password hash in database:', typeof user.password_hash)
       return false
     }
     
+    console.log('Comparing passwords...')
     const isValid = await bcrypt.compare(password, user.password_hash)
+    console.log('Password comparison result:', isValid)
+    
     return isValid
   } catch (error) {
     console.error('Validation error:', error)
