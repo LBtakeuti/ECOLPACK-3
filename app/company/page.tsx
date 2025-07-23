@@ -1,28 +1,10 @@
-import Image from 'next/image'
-import { getPageImages } from '@/lib/cms-images'
-
-export default async function CompanyPage() {
-  // Get CMS images for company page
-  const cmsImages = await getPageImages('about')
-  const heroImage = cmsImages.hero?.file_path || '/images/company_overview.md'
+export default function CompanyPage() {
   return (
     <div className="py-12">
       <div className="container-eco">
         <h1 className="text-4xl font-bold text-eco-dark mb-12 text-center">会社概況</h1>
         
-        <div className="grid md:grid-cols-2 gap-12 items-start">
-          <div>
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <Image
-                src={heroImage}
-                alt={cmsImages.hero?.alt_text || "エコロパック本社ビル"}
-                width={600}
-                height={400}
-                className="w-full h-auto"
-              />
-            </div>
-          </div>
-          
+        <div className="max-w-4xl mx-auto">
           <div className="space-y-8">
             <div>
               <h2 className="text-2xl font-bold text-eco-dark mb-4">会社概要</h2>
