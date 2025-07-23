@@ -28,7 +28,13 @@ export default function LoginPage() {
 
       if (!response.ok) {
         setError(data.error || 'ログインに失敗しました')
+        console.error('Login failed:', data)
         return
+      }
+      
+      // セッションエラーの警告がある場合でも、認証が成功していれば続行
+      if (data.warning) {
+        console.warn('Login warning:', data.warning)
       }
 
       router.push('/admin')

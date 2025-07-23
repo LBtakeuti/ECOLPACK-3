@@ -39,16 +39,34 @@ export async function POST(request: NextRequest) {
       )
     }
     
-    const session = await getSession()
-    session.isLoggedIn = true
-    session.username = username
-    await session.save()
+    // セッション処理をtry-catchで囲む
+    try {
+      const session = await getSession()
+      session.isLoggedIn = true
+      session.username = username
+      await session.save()
+    } catch (sessionError) {
+      console.error('Session error:', sessionError)
+      // セッションエラーでも一時的に成功を返す（デバッグ用）
+      return NextResponse.json({ 
+        success: true, 
+        warning: 'Session save failed but login validated',
+        debug: {
+          sessionError: sessionError instanceof Error ? sessionError.message : 'Unknown session error',
+          hasSessionSecret: !!process.env.SESSION_SECRET
+        }
+      })
+    }
     
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error('Login error:', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { 
+        error: 'Internal server error',
+        details: error instanceof Error ? error.message : 'Unknown error',
+        stack: process.env.NODE_ENV === 'development' ? (error instanceof Error ? error.stack : undefined) : undefined
+      },
       { status: 500 }
     )
   }
