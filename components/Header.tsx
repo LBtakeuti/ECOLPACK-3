@@ -82,7 +82,7 @@ export default function Header() {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`md:hidden overflow-hidden transition-all duration-500 ${
+        <div className={`md:hidden overflow-hidden transition-all duration-500 bg-white ${
           isMenuOpen ? 'max-h-96' : 'max-h-0'
         }`}>
           <nav className="py-8 space-y-4 border-t border-eco-gray-100">
