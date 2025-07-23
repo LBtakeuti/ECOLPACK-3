@@ -18,12 +18,23 @@ export async function getDB() {
 }
 
 export async function validateUser(username: string, password: string) {
-  // Supabaseが設定されている場合は使用
-  if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY) {
-    const { validateUser: validateSupabaseUser } = await import('./database-supabase')
-    return validateSupabaseUser(username, password)
+  try {
+    // Supabaseが設定されている場合は使用
+    if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      const { validateUser: validateSupabaseUser } = await import('./database-supabase')
+      return validateSupabaseUser(username, password)
+    }
+    
+    // 環境変数が設定されていない場合のデバッグ情報
+    console.error('Supabase not configured:', {
+      hasUrl: !!process.env.NEXT_PUBLIC_SUPABASE_URL,
+      hasServiceKey: !!process.env.SUPABASE_SERVICE_ROLE_KEY
+    })
+    
+    // For now, return false to prevent access
+    return false
+  } catch (error) {
+    console.error('validateUser error:', error)
+    return false
   }
-  
-  // For now, return false to prevent access
-  return false
 }
