@@ -59,15 +59,24 @@ export async function getDB() {
 export async function validateUser(username: string, password: string) {
   if (!supabase) return false
   
-  const { data: user } = await supabase
-    .from('users')
-    .select('*')
-    .eq('username', username)
-    .single()
-  
-  if (!user) return false
-  
-  return bcrypt.compare(password, user.password_hash)
+  try {
+    const { data: user, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('username', username)
+      .single()
+    
+    if (error || !user) {
+      console.error('User lookup error:', error)
+      return false
+    }
+    
+    const isValid = await bcrypt.compare(password, user.password_hash)
+    return isValid
+  } catch (error) {
+    console.error('Validation error:', error)
+    return false
+  }
 }
 
 // ヘルパー関数
