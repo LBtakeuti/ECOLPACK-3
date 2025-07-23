@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-gray-200;
+  }
+  
+  body {
+    @apply bg-white text-eco-dark antialiased;
+  }
+
+  ::selection {
+    @apply bg-eco-primary text-white;
+  }
+}
+
+@layer components {
+  .container-eco {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-3 text-sm font-medium tracking-wider text-white bg-eco-primary hover:bg-eco-secondary transition-colors duration-300;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-8 py-3 text-sm font-medium tracking-wider text-eco-dark bg-transparent border border-eco-dark hover:bg-eco-dark hover:text-white transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply transition-all duration-500 hover:shadow-lg;
+  }
+
+  .gradient-text {
+    @apply text-eco-primary font-light;
+  }
+
+  .glass-effect {
+    @apply bg-white/95 backdrop-blur-sm border-b border-eco-gray-100;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
