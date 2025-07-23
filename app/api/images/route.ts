@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getDB } from '@/lib/db/database'
 import { writeFile, unlink } from 'fs/promises'
 import path from 'path'
+import { uploadImageToSupabase, deleteImageFromSupabase, isSupabaseConfigured } from '@/lib/supabase'
 
 export async function GET(request: NextRequest) {
   try {
@@ -62,17 +63,34 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const bytes = await file.arrayBuffer()
-    const buffer = Buffer.from(bytes)
+    let filePath: string
 
-    // Create unique filename
-    const timestamp = Date.now()
-    const extension = path.extname(file.name)
-    const filename = `${page_name}_${image_name}_${timestamp}${extension}`
-    const filepath = path.join(process.cwd(), 'public/uploads', filename)
+    // Supabaseが設定されている場合はSupabaseを使用、そうでない場合はローカル保存
+    if (isSupabaseConfigured()) {
+      try {
+        filePath = await uploadImageToSupabase(file, `${page_name}/${image_name}`)
+      } catch (error) {
+        console.error('Error uploading to Supabase:', error)
+        return NextResponse.json(
+          { error: 'Failed to upload image to storage' },
+          { status: 500 }
+        )
+      }
+    } else {
+      // ローカル保存（開発環境用）
+      const bytes = await file.arrayBuffer()
+      const buffer = Buffer.from(bytes)
 
-    // Save file
-    await writeFile(filepath, buffer)
+      // Create unique filename
+      const timestamp = Date.now()
+      const extension = path.extname(file.name)
+      const filename = `${page_name}_${image_name}_${timestamp}${extension}`
+      const filepath = path.join(process.cwd(), 'public/uploads', filename)
+
+      // Save file
+      await writeFile(filepath, buffer)
+      filePath = `/uploads/${filename}`
+    }
 
     const db = await getDB()
     
@@ -85,10 +103,18 @@ export async function POST(request: NextRequest) {
 
     if (existing) {
       // Delete old file
-      try {
-        await unlink(path.join(process.cwd(), 'public', existing.file_path))
-      } catch (error) {
-        console.error('Error deleting old file:', error)
+      if (isSupabaseConfigured() && existing.file_path.includes('supabase')) {
+        try {
+          await deleteImageFromSupabase(existing.file_path)
+        } catch (error) {
+          console.error('Error deleting old file from Supabase:', error)
+        }
+      } else {
+        try {
+          await unlink(path.join(process.cwd(), 'public', existing.file_path))
+        } catch (error) {
+          console.error('Error deleting old file:', error)
+        }
       }
       
       // Update record
@@ -96,7 +122,7 @@ export async function POST(request: NextRequest) {
         `UPDATE page_images 
          SET file_path = ?, alt_text = ?, created_at = CURRENT_TIMESTAMP
          WHERE page_name = ? AND image_name = ?`,
-        `/uploads/${filename}`,
+        filePath,
         alt_text,
         page_name,
         image_name
@@ -108,14 +134,14 @@ export async function POST(request: NextRequest) {
          VALUES (?, ?, ?, ?)`,
         page_name,
         image_name,
-        `/uploads/${filename}`,
+        filePath,
         alt_text
       )
     }
 
     return NextResponse.json({ 
       success: true,
-      file_path: `/uploads/${filename}`
+      file_path: filePath
     })
   } catch (error) {
     console.error('Error uploading image:', error)
@@ -145,10 +171,18 @@ export async function DELETE(request: NextRequest) {
     }
     
     // Delete file
-    try {
-      await unlink(path.join(process.cwd(), 'public', image.file_path))
-    } catch (error) {
-      console.error('Error deleting file:', error)
+    if (isSupabaseConfigured() && image.file_path.includes('supabase')) {
+      try {
+        await deleteImageFromSupabase(image.file_path)
+      } catch (error) {
+        console.error('Error deleting file from Supabase:', error)
+      }
+    } else {
+      try {
+        await unlink(path.join(process.cwd(), 'public', image.file_path))
+      } catch (error) {
+        console.error('Error deleting file:', error)
+      }
     }
     
     // Delete record
