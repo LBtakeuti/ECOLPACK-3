@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import Link from 'next/link'
 
@@ -12,8 +12,10 @@ interface NewsForm {
   published_at: string
 }
 
-export default function EditNewsPage({ params }: { params: { id: string } }) {
+export default function EditNewsPage() {
   const router = useRouter()
+  const params = useParams()
+  const id = params.id as string
   const [loading, setLoading] = useState(false)
   const [fetching, setFetching] = useState(true)
   const { register, handleSubmit, reset, formState: { errors } } = useForm<NewsForm>()
@@ -24,7 +26,7 @@ export default function EditNewsPage({ params }: { params: { id: string } }) {
 
   const fetchNews = async () => {
     try {
-      const response = await fetch(`/api/news/${params.id}`)
+      const response = await fetch(`/api/news/${id}`)
       const data = await response.json()
       
       reset({
@@ -43,7 +45,7 @@ export default function EditNewsPage({ params }: { params: { id: string } }) {
   const onSubmit = async (data: NewsForm) => {
     setLoading(true)
     try {
-      const response = await fetch(`/api/news/${params.id}`, {
+      const response = await fetch(`/api/news/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
