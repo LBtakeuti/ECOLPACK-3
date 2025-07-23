@@ -29,7 +29,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        'sans': ['Inter', 'Noto Sans JP', 'sans-serif'],
+        'serif': ['Noto Serif JP', 'serif'],
+        'sans': ['Noto Sans JP', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 1.2s ease-out',
