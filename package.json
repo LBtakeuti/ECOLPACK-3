@@ -2,6 +2,7 @@
   "name": "ecolopack-website",
   "version": "1.0.0",
   "description": "Corporate website for Ecolopack Inc.",
+  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
