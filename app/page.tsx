@@ -70,17 +70,17 @@ export default async function Home() {
           <div className="grid md:grid-cols-3 gap-12">
             {[
               {
-                image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=2340&auto=format&fit=crop",
+                image: "https://images.unsplash.com/photo-1569163139394-de4798aa36d1?q=80&w=2340&auto=format&fit=crop",
                 title: "省エネルギー",
                 description: "製造から廃棄まで、全工程でエネルギー消費を最小限に抑えた設計"
               },
               {
-                image: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=2340&auto=format&fit=crop",
+                image: "https://images.unsplash.com/photo-1536939459926-301728717817?q=80&w=2340&auto=format&fit=crop",
                 title: "循環型社会",
                 description: "リサイクル可能な素材を使用し、廃棄物ゼロを目指した製品開発"
               },
               {
-                image: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=2340&auto=format&fit=crop",
+                image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2340&auto=format&fit=crop",
                 title: "生分解性素材",
                 description: "自然に還る素材を使用し、環境負荷を最小限に抑えた製品設計"
               }
