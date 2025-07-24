@@ -11,29 +11,35 @@ export default function ProductsPage() {
           <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 lg:p-8">
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-eco-dark mb-4 sm:mb-6">ブランフォームトップ</h2>
             <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
-              <div>
-                <Image
-                  src="/images/bfTOP1.png"
-                  alt="ブランフォームトップ"
-                  width={500}
-                  height={400}
-                  className="rounded-lg w-full h-auto"
-                />
-                <div className="grid grid-cols-2 gap-4 mt-4">
+              <div className="order-2 lg:order-1">
+                <div className="relative aspect-[5/4]">
                   <Image
-                    src="/images/bfTOP2.png"
-                    alt="ブランフォームトップ 小袋"
-                    width={240}
-                    height={180}
-                    className="rounded-lg w-full h-auto"
+                    src="/images/bfTOP1.png"
+                    alt="ブランフォームトップ"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+                    className="rounded-lg object-cover"
                   />
-                  <Image
-                    src="/images/bfTOP3.png"
-                    alt="ブランフォームトップ 外装形態"
-                    width={240}
-                    height={180}
-                    className="rounded-lg w-full h-auto"
-                  />
+                </div>
+                <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 mt-2 sm:mt-3 md:mt-4">
+                  <div className="relative aspect-[4/3]">
+                    <Image
+                      src="/images/bfTOP2.png"
+                      alt="ブランフォームトップ 小袋"
+                      fill
+                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 300px"
+                      className="rounded-lg object-cover"
+                    />
+                  </div>
+                  <div className="relative aspect-[4/3]">
+                    <Image
+                      src="/images/bfTOP3.png"
+                      alt="ブランフォームトップ 外装形態"
+                      fill
+                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 300px"
+                      className="rounded-lg object-cover"
+                    />
+                  </div>
                 </div>
               </div>
               <div>
@@ -93,29 +99,35 @@ export default function ProductsPage() {
           <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 lg:p-8">
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-eco-dark mb-4 sm:mb-6">ブランフォーム</h2>
             <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
-              <div>
-                <Image
-                  src="/images/bf1.png"
-                  alt="ブランフォーム"
-                  width={500}
-                  height={400}
-                  className="rounded-lg w-full h-auto"
-                />
-                <div className="grid grid-cols-2 gap-4 mt-4">
+              <div className="order-2 lg:order-1">
+                <div className="relative aspect-[5/4]">
                   <Image
-                    src="/images/bf2.png"
-                    alt="ブランフォーム 小袋"
-                    width={240}
-                    height={180}
-                    className="rounded-lg w-full h-auto"
+                    src="/images/bf1.png"
+                    alt="ブランフォーム"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+                    className="rounded-lg object-cover"
                   />
-                  <Image
-                    src="/images/bf3.png"
-                    alt="ブランフォーム 外装形態"
-                    width={240}
-                    height={180}
-                    className="rounded-lg w-full h-auto"
-                  />
+                </div>
+                <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 mt-2 sm:mt-3 md:mt-4">
+                  <div className="relative aspect-[4/3]">
+                    <Image
+                      src="/images/bf2.png"
+                      alt="ブランフォーム 小袋"
+                      fill
+                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 300px"
+                      className="rounded-lg object-cover"
+                    />
+                  </div>
+                  <div className="relative aspect-[4/3]">
+                    <Image
+                      src="/images/bf3.png"
+                      alt="ブランフォーム 外装形態"
+                      fill
+                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 300px"
+                      className="rounded-lg object-cover"
+                    />
+                  </div>
                 </div>
               </div>
               <div>
@@ -192,33 +204,39 @@ export default function ProductsPage() {
         </section>
 
         {/* ブランフォームBIG */}
-        <section id="branfoam-big" className="mb-20">
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-eco-dark mb-6">ブランフォームBIG</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <Image
-                  src="/images/bfBIG1.png"
-                  alt="ブランフォームBIG"
-                  width={500}
-                  height={400}
-                  className="rounded-lg w-full h-auto"
-                />
-                <div className="grid grid-cols-2 gap-4 mt-4">
+        <section id="branfoam-big" className="mb-12 sm:mb-16 lg:mb-20">
+          <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 lg:p-8">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-eco-dark mb-4 sm:mb-6">ブランフォームBIG</h2>
+            <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
+              <div className="order-2 lg:order-1">
+                <div className="relative aspect-[5/4]">
                   <Image
-                    src="/images/bfBIG2.png"
-                    alt="ブランフォームBIG 小袋"
-                    width={240}
-                    height={180}
-                    className="rounded-lg w-full h-auto"
+                    src="/images/bfBIG1.png"
+                    alt="ブランフォームBIG"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+                    className="rounded-lg object-cover"
                   />
-                  <Image
-                    src="/images/bfBIG3.png"
-                    alt="ブランフォームBIG 使用例"
-                    width={240}
-                    height={180}
-                    className="rounded-lg w-full h-auto"
-                  />
+                </div>
+                <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 mt-2 sm:mt-3 md:mt-4">
+                  <div className="relative aspect-[4/3]">
+                    <Image
+                      src="/images/bfBIG2.png"
+                      alt="ブランフォームBIG 小袋"
+                      fill
+                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 300px"
+                      className="rounded-lg object-cover"
+                    />
+                  </div>
+                  <div className="relative aspect-[4/3]">
+                    <Image
+                      src="/images/bfBIG3.png"
+                      alt="ブランフォームBIG 使用例"
+                      fill
+                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 300px"
+                      className="rounded-lg object-cover"
+                    />
+                  </div>
                 </div>
               </div>
               <div>
@@ -275,26 +293,30 @@ export default function ProductsPage() {
         </section>
 
         {/* エコロパット */}
-        <section id="ecopat" className="mb-20">
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-eco-dark mb-6">エコロパット</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <Image
-                  src="/images/ecolopat1.png"
-                  alt="エコロパット"
-                  width={500}
-                  height={400}
-                  className="rounded-lg w-full h-auto"
-                />
-                <div className="mt-4">
+        <section id="ecopat" className="mb-12 sm:mb-16 lg:mb-20">
+          <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 lg:p-8">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-eco-dark mb-4 sm:mb-6">エコロパット</h2>
+            <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
+              <div className="order-2 lg:order-1">
+                <div className="relative aspect-[5/4]">
                   <Image
-                    src="/images/eclpat2.png"
-                    alt="エコロパット 使用例"
-                    width={500}
-                    height={300}
-                    className="rounded-lg w-full h-auto"
+                    src="/images/ecolopat1.png"
+                    alt="エコロパット"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+                    className="rounded-lg object-cover"
                   />
+                </div>
+                <div className="mt-2 sm:mt-3 md:mt-4">
+                  <div className="relative aspect-[5/3]">
+                    <Image
+                      src="/images/eclpat2.png"
+                      alt="エコロパット 使用例"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+                      className="rounded-lg object-cover"
+                    />
+                  </div>
                 </div>
               </div>
               <div>
@@ -353,26 +375,30 @@ export default function ProductsPage() {
         </section>
 
         {/* ブランフォームグリーン */}
-        <section id="branfoam-green" className="mb-20">
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-eco-dark mb-6">ブランフォームグリーン</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <Image
-                  src="/images/bfg1.png"
-                  alt="ブランフォームグリーン"
-                  width={500}
-                  height={400}
-                  className="rounded-lg w-full h-auto"
-                />
-                <div className="mt-4">
+        <section id="branfoam-green" className="mb-12 sm:mb-16 lg:mb-20">
+          <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 lg:p-8">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-eco-dark mb-4 sm:mb-6">ブランフォームグリーン</h2>
+            <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
+              <div className="order-2 lg:order-1">
+                <div className="relative aspect-[5/4]">
                   <Image
-                    src="/images/bfg2.png"
-                    alt="ブランフォームグリーン 使用例"
-                    width={500}
-                    height={300}
-                    className="rounded-lg w-full h-auto"
+                    src="/images/bfg1.png"
+                    alt="ブランフォームグリーン"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+                    className="rounded-lg object-cover"
                   />
+                </div>
+                <div className="mt-2 sm:mt-3 md:mt-4">
+                  <div className="relative aspect-[5/3]">
+                    <Image
+                      src="/images/bfg2.png"
+                      alt="ブランフォームグリーン 使用例"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+                      className="rounded-lg object-cover"
+                    />
+                  </div>
                 </div>
               </div>
               <div>
@@ -437,8 +463,8 @@ export default function ProductsPage() {
         </section>
 
         {/* 生分解性プラマーク */}
-        <section className="mb-20">
-          <div className="bg-eco-bg rounded-lg p-8 text-center">
+        <section className="mb-12 sm:mb-16 lg:mb-20">
+          <div className="bg-eco-bg rounded-lg p-4 sm:p-6 lg:p-8 text-center">
             <h2 className="text-2xl font-bold text-eco-dark mb-4">生分解性プラマーク</h2>
             <div className="max-w-md mx-auto">
               <p className="mb-4">ブランフォームトップは微生物により土中で分解いたします。</p>
