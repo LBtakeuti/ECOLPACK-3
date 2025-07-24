@@ -31,7 +31,7 @@ export default function Header() {
       }`}>
         <div className="container-eco">
           <div className="flex items-center justify-between h-24">
-          <Link href="/" className="flex items-center space-x-3 group">
+            <Link href="/" className="flex items-center space-x-3 group">
             <div className="w-10 h-10 bg-eco-primary flex items-center justify-center">
               <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2L2 7L12 12L22 7L12 2Z" />
@@ -80,6 +80,7 @@ export default function Header() {
               </div>
             </div>
           </button>
+          </div>
         </div>
       </div>
       
