@@ -66,44 +66,70 @@ export default async function Home() {
             <div className="w-20 h-[1px] bg-eco-gold mx-auto"></div>
           </div>
 
+          {/* 価値セクションの画像 */}
+          <div className="mb-20">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div className="relative h-[400px] overflow-hidden rounded-lg">
+                <Image
+                  src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2340&auto=format&fit=crop"
+                  alt="緑豊かな森林"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="space-y-6">
+                <h3 className="text-3xl font-light text-eco-dark">
+                  自然と調和する技術
+                </h3>
+                <p className="text-eco-gray-600 leading-relaxed font-light">
+                  私たちは、最先端の技術と自然の知恵を融合させ、
+                  地球環境に優しい包装材料を開発しています。
+                  持続可能な未来のために、今できることから始めています。
+                </p>
+                <div className="flex items-center space-x-8">
+                  <div>
+                    <p className="text-3xl font-light text-eco-primary">90%</p>
+                    <p className="text-sm text-eco-gray-500">生分解性素材使用率</p>
+                  </div>
+                  <div>
+                    <p className="text-3xl font-light text-eco-primary">75%</p>
+                    <p className="text-sm text-eco-gray-500">CO2削減率</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-3 gap-12">
             {[
               {
-                icon: (
-                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                ),
+                image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=2340&auto=format&fit=crop",
                 title: "省エネルギー",
                 description: "製造から廃棄まで、全工程でエネルギー消費を最小限に抑えた設計"
               },
               {
-                icon: (
-                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                  </svg>
-                ),
+                image: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=2340&auto=format&fit=crop",
                 title: "循環型社会",
                 description: "リサイクル可能な素材を使用し、廃棄物ゼロを目指した製品開発"
               },
               {
-                icon: (
-                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                ),
+                image: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=2340&auto=format&fit=crop",
                 title: "生分解性素材",
                 description: "自然に還る素材を使用し、環境負荷を最小限に抑えた製品設計"
               }
             ].map((feature, index) => (
               <div 
                 key={index} 
-                className="group text-center"
+                className="group"
               >
-                <div className="w-20 h-20 mx-auto mb-8 flex items-center justify-center border border-eco-gray-200 rounded-full group-hover:border-eco-primary transition-colors duration-500">
-                  <div className="text-eco-gray-400 group-hover:text-eco-primary transition-colors duration-500">
-                    {feature.icon}
-                  </div>
+                <div className="relative h-64 mb-8 overflow-hidden rounded-lg">
+                  <Image
+                    src={feature.image}
+                    alt={feature.title}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-eco-dark/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
                 <h3 className="text-xl font-light text-eco-dark mb-4 tracking-wider">{feature.title}</h3>
                 <p className="text-eco-gray-500 leading-relaxed font-light">{feature.description}</p>
