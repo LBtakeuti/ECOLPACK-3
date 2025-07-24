@@ -70,12 +70,12 @@ export default async function Home() {
           <div className="grid md:grid-cols-3 gap-12">
             {[
               {
-                image: "https://images.unsplash.com/photo-1569163139394-de4798aa36d1?q=80&w=2340&auto=format&fit=crop",
+                image: "https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?q=80&w=2340&auto=format&fit=crop",
                 title: "省エネルギー",
                 description: "製造から廃棄まで、全工程でエネルギー消費を最小限に抑えた設計"
               },
               {
-                image: "https://images.unsplash.com/photo-1536939459926-301728717817?q=80&w=2340&auto=format&fit=crop",
+                image: "https://images.unsplash.com/photo-1604076850742-4c7221f3101b?q=80&w=2340&auto=format&fit=crop",
                 title: "循環型社会",
                 description: "リサイクル可能な素材を使用し、廃棄物ゼロを目指した製品開発"
               },
