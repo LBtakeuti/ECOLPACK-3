@@ -75,7 +75,7 @@ export default async function Home() {
                 description: "製造から廃棄まで、全工程でエネルギー消費を最小限に抑えた設計"
               },
               {
-                image: "https://images.unsplash.com/photo-1560707303-4e980ce876ad?q=80&w=2340&auto=format&fit=crop",
+                image: "https://images.unsplash.com/photo-1526951521990-620dc14c214b?q=80&w=2340&auto=format&fit=crop",
                 title: "循環型社会",
                 description: "リサイクル可能な素材を使用し、廃棄物ゼロを目指した製品開発"
               },
