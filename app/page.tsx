@@ -66,39 +66,6 @@ export default async function Home() {
             <div className="w-20 h-[1px] bg-eco-gold mx-auto"></div>
           </div>
 
-          {/* 価値セクションの画像 */}
-          <div className="mb-20">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div className="relative h-[400px] overflow-hidden rounded-lg">
-                <Image
-                  src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2340&auto=format&fit=crop"
-                  alt="緑豊かな森林"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="space-y-6">
-                <h3 className="text-3xl font-light text-eco-dark">
-                  自然と調和する技術
-                </h3>
-                <p className="text-eco-gray-600 leading-relaxed font-light">
-                  私たちは、最先端の技術と自然の知恵を融合させ、
-                  地球環境に優しい包装材料を開発しています。
-                  持続可能な未来のために、今できることから始めています。
-                </p>
-                <div className="flex items-center space-x-8">
-                  <div>
-                    <p className="text-3xl font-light text-eco-primary">90%</p>
-                    <p className="text-sm text-eco-gray-500">生分解性素材使用率</p>
-                  </div>
-                  <div>
-                    <p className="text-3xl font-light text-eco-primary">75%</p>
-                    <p className="text-sm text-eco-gray-500">CO2削減率</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
           <div className="grid md:grid-cols-3 gap-12">
             {[
