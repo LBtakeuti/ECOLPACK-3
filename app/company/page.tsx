@@ -1,4 +1,5 @@
 export default function CompanyPage() {
+  // Force cache clear - 2025-07-24
   return (
     <div className="py-12">
       <div className="container-eco">
