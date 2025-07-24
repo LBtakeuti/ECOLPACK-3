@@ -33,8 +33,8 @@ export default function Footer() {
           </div>
           
           <div>
-            <h4 className="font-semibold text-white mb-3">お問い合わせ</h4>
-            <div className="text-sm space-y-2 text-eco-light">
+            <h4 className="font-semibold text-white mb-2 sm:mb-3 text-sm sm:text-base">お問い合わせ</h4>
+            <div className="text-xs sm:text-sm space-y-1 sm:space-y-2 text-eco-light">
               <p>本社</p>
               <p>〒211-8530<br />川崎市中原区苅宿45-1</p>
               <p>TEL: 044-433-2065<br />FAX: 044-433-8706</p>
@@ -47,7 +47,7 @@ export default function Footer() {
           </div>
         </div>
         
-        <div className="border-t border-white/20 mt-8 pt-6 text-center text-sm text-eco-light">
+        <div className="border-t border-white/20 mt-6 sm:mt-8 pt-4 sm:pt-6 text-center text-xs sm:text-sm text-eco-light">
           <p>&copy; 2024 株式会社エコロパック All Rights Reserved.</p>
         </div>
       </div>

@@ -30,16 +30,16 @@ export default function Header() {
         isScrolled || isMenuOpen ? 'bg-white/90 backdrop-blur-sm border-b border-eco-gray-100' : 'bg-transparent'
       }`}>
         <div className="container-eco">
-          <div className="flex items-center justify-between h-24">
+          <div className="flex items-center justify-between h-16 sm:h-20 lg:h-24">
             <Link href="/" className="flex items-center space-x-3 group">
-            <div className="w-10 h-10 bg-eco-primary flex items-center justify-center">
-              <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-eco-primary flex items-center justify-center">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2L2 7L12 12L22 7L12 2Z" />
                 <path d="M2 17L12 22L22 17" opacity="0.6"/>
                 <path d="M2 12L12 17L22 12" opacity="0.8"/>
               </svg>
             </div>
-            <span className="text-lg font-light tracking-[0.2em] text-eco-dark uppercase">Ecolopack</span>
+            <span className="text-sm sm:text-lg font-light tracking-[0.15em] sm:tracking-[0.2em] text-eco-dark uppercase">Ecolopack</span>
           </Link>
           
           <nav className="hidden md:flex items-center space-x-8">
@@ -94,7 +94,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`block px-6 py-2 text-sm font-light tracking-wider transition-all duration-300 ${
+                className={`block px-4 py-3 sm:px-6 sm:py-2 text-sm font-light tracking-wider transition-all duration-300 ${
                   pathname === item.href
                     ? 'text-eco-primary'
                     : 'text-eco-gray-600 hover:text-eco-dark'

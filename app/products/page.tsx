@@ -2,15 +2,15 @@ import Image from 'next/image'
 
 export default function ProductsPage() {
   return (
-    <div className="py-12">
+    <div className="py-8 sm:py-12">
       <div className="container-eco">
-        <h1 className="text-4xl font-bold text-eco-dark mb-12 text-center">製品情報</h1>
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-eco-dark mb-8 sm:mb-12 text-center">製品情報</h1>
         
         {/* ブランフォームトップ */}
-        <section id="branfoam-top" className="mb-20">
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-eco-dark mb-6">ブランフォームトップ</h2>
-            <div className="grid md:grid-cols-2 gap-8">
+        <section id="branfoam-top" className="mb-12 sm:mb-16 lg:mb-20">
+          <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 lg:p-8">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-eco-dark mb-4 sm:mb-6">ブランフォームトップ</h2>
+            <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
               <div>
                 <Image
                   src="/images/bfTOP1.png"
@@ -37,8 +37,8 @@ export default function ProductsPage() {
                 </div>
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-eco-dark mb-4">特徴</h3>
-                <ul className="list-disc list-inside space-y-2 mb-6">
+                <h3 className="text-lg sm:text-xl font-semibold text-eco-dark mb-3 sm:mb-4">特徴</h3>
+                <ul className="list-disc list-inside space-y-2 mb-4 sm:mb-6 text-sm sm:text-base">
                   <li>ブランフォームトップは生分解性の緩衝材です。</li>
                   <li>主成分は植物デンプンです。微生物により分解されます。</li>
                   <li>一般ゴミとして廃棄できます。</li>
@@ -49,8 +49,8 @@ export default function ProductsPage() {
                   <li>本品は食べられません。</li>
                 </ul>
                 
-                <h3 className="text-xl font-semibold text-eco-dark mb-4">製品仕様</h3>
-                <div className="overflow-x-auto">
+                <h3 className="text-lg sm:text-xl font-semibold text-eco-dark mb-3 sm:mb-4">製品仕様</h3>
+                <div className="overflow-x-auto -mx-4 sm:mx-0">
                   <table className="w-full border-collapse">
                     <thead>
                       <tr className="bg-eco-bg">
@@ -89,10 +89,10 @@ export default function ProductsPage() {
         </section>
 
         {/* ブランフォーム */}
-        <section id="branfoam" className="mb-20">
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-eco-dark mb-6">ブランフォーム</h2>
-            <div className="grid md:grid-cols-2 gap-8">
+        <section id="branfoam" className="mb-12 sm:mb-16 lg:mb-20">
+          <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 lg:p-8">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-eco-dark mb-4 sm:mb-6">ブランフォーム</h2>
+            <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
               <div>
                 <Image
                   src="/images/bf1.png"
@@ -119,8 +119,8 @@ export default function ProductsPage() {
                 </div>
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-eco-dark mb-4">特徴</h3>
-                <ul className="list-disc list-inside space-y-2 mb-6">
+                <h3 className="text-lg sm:text-xl font-semibold text-eco-dark mb-3 sm:mb-4">特徴</h3>
+                <ul className="list-disc list-inside space-y-2 mb-4 sm:mb-6 text-sm sm:text-base">
                   <li>ブランフォームは生物資性の緩衝材です。</li>
                   <li>主成分は植物デンプンです。</li>
                   <li>焼却しても有毒なガスが発生せず、可燃ゴミとして処理出来ます。</li>
@@ -130,8 +130,8 @@ export default function ProductsPage() {
                   <li>本品は食べられません。</li>
                 </ul>
                 
-                <h3 className="text-xl font-semibold text-eco-dark mb-4">製品仕様</h3>
-                <div className="overflow-x-auto">
+                <h3 className="text-lg sm:text-xl font-semibold text-eco-dark mb-3 sm:mb-4">製品仕様</h3>
+                <div className="overflow-x-auto -mx-4 sm:mx-0">
                   <table className="w-full border-collapse">
                     <thead>
                       <tr className="bg-eco-bg">
@@ -222,8 +222,8 @@ export default function ProductsPage() {
                 </div>
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-eco-dark mb-4">特徴</h3>
-                <ul className="list-disc list-inside space-y-2 mb-6">
+                <h3 className="text-lg sm:text-xl font-semibold text-eco-dark mb-3 sm:mb-4">特徴</h3>
+                <ul className="list-disc list-inside space-y-2 mb-4 sm:mb-6 text-sm sm:text-base">
                   <li>今までにない大型（70mm）のパラ状緩衝材です。</li>
                   <li>大型製品の下敷き、単独使用での周囲緩衝材として最適です。</li>
                   <li>小袋仕様に対して、フィルムレスの為、プラスチック削減に寄与します。</li>
@@ -231,8 +231,8 @@ export default function ProductsPage() {
                   <li>長さ65mm～150mmの範囲で対応できます。ご相談ください。</li>
                 </ul>
                 
-                <h3 className="text-xl font-semibold text-eco-dark mb-4">製品仕様</h3>
-                <div className="overflow-x-auto">
+                <h3 className="text-lg sm:text-xl font-semibold text-eco-dark mb-3 sm:mb-4">製品仕様</h3>
+                <div className="overflow-x-auto -mx-4 sm:mx-0">
                   <table className="w-full border-collapse">
                     <thead>
                       <tr className="bg-eco-bg">
@@ -298,16 +298,16 @@ export default function ProductsPage() {
                 </div>
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-eco-dark mb-4">特徴</h3>
-                <ul className="list-disc list-inside space-y-2 mb-6">
+                <h3 className="text-lg sm:text-xl font-semibold text-eco-dark mb-3 sm:mb-4">特徴</h3>
+                <ul className="list-disc list-inside space-y-2 mb-4 sm:mb-6 text-sm sm:text-base">
                   <li>梨、桃、リンゴ、その他果物用緩衝シートに最適。</li>
                   <li>表面はエンボス加工、裏面はフラット加工です。</li>
                   <li>エンボスにより柔らかな緩衝性をたもちます。</li>
                   <li>ご要望の寸法に対応します。</li>
                 </ul>
                 
-                <h3 className="text-xl font-semibold text-eco-dark mb-4">製品仕様</h3>
-                <div className="overflow-x-auto">
+                <h3 className="text-lg sm:text-xl font-semibold text-eco-dark mb-3 sm:mb-4">製品仕様</h3>
+                <div className="overflow-x-auto -mx-4 sm:mx-0">
                   <table className="w-full border-collapse">
                     <thead>
                       <tr className="bg-eco-bg">
@@ -376,14 +376,14 @@ export default function ProductsPage() {
                 </div>
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-eco-dark mb-4">特徴</h3>
-                <ul className="list-disc list-inside space-y-2 mb-6">
+                <h3 className="text-lg sm:text-xl font-semibold text-eco-dark mb-3 sm:mb-4">特徴</h3>
+                <ul className="list-disc list-inside space-y-2 mb-4 sm:mb-6 text-sm sm:text-base">
                   <li>梱包の下敷き、角当て緩衝材として最適です。</li>
                   <li>小袋仕様に対して、フィルムレスの為、プラスチック削減に寄与します。</li>
                 </ul>
                 
-                <h3 className="text-xl font-semibold text-eco-dark mb-4">製品仕様</h3>
-                <div className="overflow-x-auto">
+                <h3 className="text-lg sm:text-xl font-semibold text-eco-dark mb-3 sm:mb-4">製品仕様</h3>
+                <div className="overflow-x-auto -mx-4 sm:mx-0">
                   <table className="w-full border-collapse">
                     <thead>
                       <tr className="bg-eco-bg">

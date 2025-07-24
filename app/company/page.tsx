@@ -1,21 +1,21 @@
 export default function CompanyPage() {
   // Force cache clear - 2025-07-24
   return (
-    <div className="py-12">
+    <div className="py-8 sm:py-12">
       <div className="container-eco">
-        <h1 className="text-4xl font-bold text-eco-dark mb-12 text-center">会社概況</h1>
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-eco-dark mb-8 sm:mb-12 text-center">会社概況</h1>
         
         <div className="max-w-4xl mx-auto">
           <div className="space-y-8">
             <div>
-              <h2 className="text-2xl font-bold text-eco-dark mb-4">会社概要</h2>
-              <dl className="space-y-3">
-                <div className="flex">
-                  <dt className="font-semibold text-eco-dark w-32">社名</dt>
+              <h2 className="text-xl sm:text-2xl font-bold text-eco-dark mb-4">会社概要</h2>
+              <dl className="space-y-4">
+                <div className="sm:flex">
+                  <dt className="font-semibold text-eco-dark w-full sm:w-32 mb-1 sm:mb-0">社名</dt>
                   <dd>株式会社エコロパック</dd>
                 </div>
-                <div className="flex">
-                  <dt className="font-semibold text-eco-dark w-32">所在地</dt>
+                <div className="sm:flex">
+                  <dt className="font-semibold text-eco-dark w-full sm:w-32 mb-1 sm:mb-0">所在地</dt>
                   <dd>
                     <div className="space-y-2">
                       <div>
@@ -33,27 +33,27 @@ export default function CompanyPage() {
                     </div>
                   </dd>
                 </div>
-                <div className="flex">
-                  <dt className="font-semibold text-eco-dark w-32">設立</dt>
+                <div className="sm:flex">
+                  <dt className="font-semibold text-eco-dark w-full sm:w-32 mb-1 sm:mb-0">設立</dt>
                   <dd>1996年6月11日</dd>
                 </div>
-                <div className="flex">
-                  <dt className="font-semibold text-eco-dark w-32">資本金</dt>
+                <div className="sm:flex">
+                  <dt className="font-semibold text-eco-dark w-full sm:w-32 mb-1 sm:mb-0">資本金</dt>
                   <dd>36,000,000円</dd>
                 </div>
-                <div className="flex">
-                  <dt className="font-semibold text-eco-dark w-32">代表者</dt>
+                <div className="sm:flex">
+                  <dt className="font-semibold text-eco-dark w-full sm:w-32 mb-1 sm:mb-0">代表者</dt>
                   <dd>代表取締役　丸山　睦雄</dd>
                 </div>
-                <div className="flex">
-                  <dt className="font-semibold text-eco-dark w-32">金融機関</dt>
+                <div className="sm:flex">
+                  <dt className="font-semibold text-eco-dark w-full sm:w-32 mb-1 sm:mb-0">金融機関</dt>
                   <dd>みずほ銀行川崎支店</dd>
                 </div>
               </dl>
             </div>
             
             <div>
-              <h2 className="text-2xl font-bold text-eco-dark mb-4">関連企業・本社</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-eco-dark mb-4">関連企業・本社</h2>
               <p className="mb-2">帝国通信工業株式会社（東証プライム上場）全額出資の会社</p>
               <p className="font-semibold">帝国通信工業株式会社</p>
               <p>本社：神奈川県川崎市中原区苅宿45-1</p>
@@ -67,9 +67,9 @@ export default function CompanyPage() {
           </div>
         </div>
         
-        <div className="mt-16">
-          <h2 className="text-2xl font-bold text-eco-dark mb-6">事業内容</h2>
-          <div className="bg-eco-bg rounded-lg p-8">
+        <div className="mt-12 sm:mt-16">
+          <h2 className="text-xl sm:text-2xl font-bold text-eco-dark mb-4 sm:mb-6">事業内容</h2>
+          <div className="bg-eco-bg rounded-lg p-4 sm:p-6 lg:p-8">
             <ol className="list-decimal list-inside space-y-4">
               <li>
                 <strong>天然有機物と熱可塑性樹脂との複合材の開発、製造</strong>
